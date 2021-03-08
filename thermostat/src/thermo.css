@@ -7,12 +7,44 @@
     text-align: center;
 }
 
+/* Slider div overlays on top of thermostat div*/
+.slider {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+/* Styling for slider marks SVG */
+.slider-marks {
+    fill: none; 
+    stroke-dasharray: .7 3; 
+    stroke-dashoffset: 0;
+    stroke-width: 8;
+    stroke: #d8d8d8;
+}
+
 svg {
     position: relative;
     left: 0;
-    z-index: -1;
+    pointer-events: none;
 }
 
+/* Remove selection on SVG text*/
+svg text {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+svg text::selection {
+    background: none;
+}
+
+/* Thermo outer border */
 .svg-thermo-outer-border {
     fill: #f8f8f8;
 }
@@ -24,6 +56,35 @@ svg {
     /* Similar syntax to box-shadow */
 }
 
+/* For coloured ring around thermo face*/
+.svg-arc {
+    fill: transparent;
+    stroke-width: 3;
+}
+
+.svg-arc-cooling {
+    stop-color: #5495CA; /*For face #319CEF*/
+}
+
+.svg-arc-heating {
+    stop-color: #EF6B6B; /* For face #FF6B63*/
+}
+
+.svg-arc-bottom {
+    stroke: #52525A;
+}
+
+.svg-thermo-face {
+    fill: #656B73; /* Default face colour*/
+}
+
+.svg-sun-icon {
+    fill: #000;
+    opacity: 0.3;
+    transform: translate(45%, 70%) scale(0.45, 0.45);
+}
+
+/* Text on SVG */
 .thermo-temp-text {
     position: absolute;
     font-weight: bold;
@@ -45,7 +106,6 @@ svg {
 /**
 * Styling for user controls
 */
-
 .control-container {
     display: flex;
     flex-direction: row;

@@ -13,7 +13,8 @@ function polarToCartesian(centerX, centerY, radius, degrees) {
 }
 
 // Helper function for creating d attribute for path for circle arcs 
-export function describeArc(x, y, radius, startAngle, endAngle){
+// Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+export function drawArc(x, y, radius, startAngle, endAngle){
 
     var start = polarToCartesian(x, y, radius, endAngle);
     var end = polarToCartesian(x, y, radius, startAngle);
