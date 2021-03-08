@@ -1,0 +1,9 @@
+{
+  "short_name": "Thermostat",
+  "name": "CS3249 Assignment 3 Thermostat",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
