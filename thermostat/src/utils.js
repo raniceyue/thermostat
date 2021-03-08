@@ -1,5 +1,5 @@
 /**
- * Helper functions
+ * File for all helper functions
  */
 
 // Helper function to convert polar co-ordinates to cartesian co-ordinates

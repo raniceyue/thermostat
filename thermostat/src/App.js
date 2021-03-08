@@ -3,9 +3,7 @@ import Thermostat from './Thermostat';
 
 function App() {
   return (
-    <div className="container">
-      <Thermostat/>
-    </div>
+    <Thermostat/>
   );
 }
 

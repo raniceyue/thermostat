@@ -1,5 +1,5 @@
 import React from 'react';
-import './thermo.css';
+import './style.css';
 
 import { drawArc } from './utils.js';
 import TemperatureText from './TemperatureText.jsx';
@@ -7,11 +7,20 @@ import TemperatureText from './TemperatureText.jsx';
 /**
  * Component for thermostat face
  */
-const Face = ({Tt, Tc}) => {
+
+const Face = ({Tt, Tc, mode}) => {
     // Arc surrounding inner face settings
 	const arc1 = drawArc(50, 50, 43, -130, 130);
     const arc2 = drawArc(50, 50, 43, 130, 230);
     
+    /**
+     * Handle mode transition for face
+     * @param {string} mode 
+     */
+    const handleModeTransition = (mode) => {
+
+    }
+
     return(
 		<div className="thermostat">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +41,10 @@ const Face = ({Tt, Tc}) => {
                 {/* THERMOSTAT FACE COLOUR */}
                 <circle className="svg-thermo-face" cx="50%" cy="50%" r="42"/>
 
-                <TemperatureText Tt={Tt} Tc={Tc} />
+                <TemperatureText 
+                    Tt={Tt} 
+                    Tc={Tc} 
+                />
                 
                 {/* SUN ICON */}
                 <path className="svg-sun-icon"
@@ -50,7 +62,8 @@ const Face = ({Tt, Tc}) => {
                         M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,
                         0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z 
                         M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,
-                        0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/>
+                        0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"
+                />
             </svg>
         </div>
     );

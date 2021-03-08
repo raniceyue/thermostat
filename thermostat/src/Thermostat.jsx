@@ -1,45 +1,107 @@
 import React, { useState } from 'react';
 
-import './thermo.css';
+import './style.css';
+import { ThermostatStates } from './ThermostatStates.js';
+import { idle, cooling, heating } from './ThermostatController.js';
 import Face from './Face.jsx';
 import Slider from './Slider.jsx';
+import { useMachine } from '@xstate/react';
+import CurrentTempController from './CurrentTempController';
 
 const Thermostat = () => {
-	const minT = 50;
-	const maxT = 80;
+	const minTt = 50;
+	const maxTt = 80;
 
-	const [Tc, setTc] = useState(72);	// Range: 32 - 100
+	const minTc = 32;
+	const maxTc = 100;
+
 	const [Tt, setTt] = useState(72);	// Range: 50 - 80
+	const [Tc, setTc] = useState(72);	// Range: 32 - 100
+	const [current, send] = useMachine(ThermostatStates);
 
-
-	const handleTextInputChange = (value) => {
-		(value < minT || value > maxT) 
-			? alert("Invalid temperature range! Valid range: " + minT + " to " + maxT)
-			: setTc(value);
+	/**
+	 * Functions to handle temp changes from other components
+	 * After setting temp will check temp and set mode of thermostat
+	 */
+	const handleTcChange = (value) => {
+		if (value >= minTc && value <= maxTc) {
+			setTc(value);
+			regulateTemp();
+		}
 	}
 
-	// Callback 
-	const handleTargetTempChange = (value) => {
-		if (value >= 30 && value <= 100) {
+	const handleTtChange = (value) => {
+		if (value >= minTt && value <= maxTt) {
 			setTt(value);
+			regulateTemp();
+		}
+	}
+
+	/**
+	 * Function for regulating temperature
+	 */
+	const regulateTemp = () => {
+		var msg;
+
+		/**
+		 * Get status from ThermostatController
+		 */
+		switch(current.value) {
+			case 'COOLING':
+				msg = cooling(Tc, Tt);
+				break;
+			case 'HEATING':
+				msg = heating(Tc, Tt);
+				break;
+			case 'IDLE':
+				msg = idle(Tc, Tt);
+				break;
+			default:
+		}
+
+		console.log('MESSAGE: ' + msg);
+
+		/**
+		 * State change according to status
+		 */
+		switch(msg) {
+			case 'TEMP_TOO_HOT':
+				console.log('OUTSIDE TOO HOT');
+				send(msg);
+				break;
+			case 'TEMP_TOO_COLD':
+				console.log('OUTSIDE TOO COLD');
+				send(msg);
+				break;
+			case 'STOP':
+				console.log('OUTSIDE IS NICE!!');
+				send('IDLE');
+				break;
+			case 'MAINTAIN':
+			default:
 		}
 	}
 
     return (
-        <>
-			<Face Tt={Tt} Tc={Tc}/>
+        <div class="container">
+			<Face 
+				Tt={Tt} 
+				Tc={Tc}
+				mode={current.value}
+			/>
 
-			<Slider minT={minT} maxT={maxT} Tt={Tt} handleTargetTempChange={handleTargetTempChange}/>
+			<Slider 
+				Tt={Tt} 
+				handleTtChange={handleTtChange}
+			/>
 
-			{/* USER CONTROLS */}
-			<div className="control-container">
-				<div className="text-input-container">
-					<label htmlFor="set-curr-temp">Set Current Temperature </label>
-					<input type="number" id="set-curr-temp" value={Tc} onChange={e => handleTextInputChange(e.target.value)}/>
-				</div>
-				<input type="range" min={ minT } max={ maxT } value={ Tc } onChange={e => handleTextInputChange(e.target.value)}/>
-			</div>
-        </>
+			<CurrentTempController 
+				minTc={minTc}
+				maxTc={maxTc}
+				Tc={Tc}
+				handleTcChange={handleTcChange}
+			/>
+        </div>
     );
 }
 
