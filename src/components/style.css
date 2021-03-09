@@ -1,6 +1,6 @@
-/**
-* Syling for SVG
-*/
+/*****************
+ *   Containers
+ *****************/
 
 .container {
     position: absolute;
@@ -24,7 +24,6 @@
     z-index: 10;
 }
 
-/* Slider div overlays on top of thermostat div*/
 .slider {
     position: absolute;
     text-align: center;
@@ -34,14 +33,9 @@
     z-index: 10;
 }
 
-/* Styling for slider marks SVG */
-.slider-marks {
-    fill: none; 
-    stroke-dasharray: .7 3; 
-    stroke-dashoffset: 0;
-    stroke-width: 8;
-    stroke: #d8d8d8;
-}
+/**************************
+ *   General SVG styles
+ **************************/
 
 svg {
     position: relative;
@@ -49,7 +43,7 @@ svg {
     pointer-events: none;
 }
 
-/* Remove selection on SVG text*/
+/* Remove selection highlight on SVG text*/
 svg text {
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -61,7 +55,10 @@ svg text::selection {
     background: none;
 }
 
-/* Thermo outer border */
+/**************************
+ *   Styling for Border
+ **************************/
+
 .svg-thermo-outer-border {
     fill: #f8f8f8;
 }
@@ -73,7 +70,10 @@ svg text::selection {
     /* Similar syntax to box-shadow */
 }
 
-/* For coloured ring around thermo face*/
+/*****************************
+ *   Styling for Border arcs
+ *****************************/
+
 .svg-arc {
     fill: transparent;
     stroke-width: 3;
@@ -91,25 +91,12 @@ svg text::selection {
     stroke: #52525A;
 }
 
-#svg-thermo-face {
-    fill: #656B73; /* Default face colour*/
-    animation: sampleanimation 1s linear infinite;
-}
-
-#svg-thermo-face:hover{
-    fill: #EF6B6B;
-    -webkit-transition: fill 1s ease;
-	-moz-transition: fill 1s ease;
-	-o-transition: fill 1s ease;
-	transition: fill 1s ease;
-}
+/*************************
+ *   Styling for Face
+ *************************/
 
 .svg-thermo-face-idle {
     fill: #656B73; /* Default face colour*/
-    -webkit-transition: fill 1s ease;
-	-moz-transition: fill 1s ease;
-	-o-transition: fill 1s ease;
-	transition: fill 1s ease;
 }
 
 .svg-thermo-face-cooling {
@@ -117,27 +104,8 @@ svg text::selection {
 }
 
 .svg-thermo-face-heating {
-    fill: #EF6B6B;
-    -webkit-transition: fill 1s ease;
-	-moz-transition: fill 1s ease;
-	-o-transition: fill 1s ease;
-	transition: fill 1s ease;
+    fill: #d45f5f;
 }
-
-.animation-cooling {
-    animation: sampleanimation 1s forwards;
-}
-
-@keyframes sampleanimation {
-    from {
-      left: 0px;
-      top: 0px;
-    }
-    to {
-      left: 0px;
-      top: 150px;
-    }
-  }
 
 .svg-sun-icon {
     fill: #000;
@@ -164,9 +132,9 @@ svg text::selection {
     filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .2));
 }
 
-/**
-* Styling for user controls
-*/
+/********************************
+ *   Styling for user controls
+ ********************************/
 .control-container {
     display: flex;
     flex-direction: row;
@@ -183,11 +151,24 @@ svg text::selection {
     width: 12%;
 }
 
-/**
-* Styling for slider
-*/
+/**************************
+ *   Styling for Slider
+ **************************/
 
-/* Clear all styling for slider*/
+/* Styling for slider marks SVG */
+.slider-marks {
+    fill: none; 
+    stroke-dasharray: .7 3; 
+    stroke-dashoffset: 0;
+    stroke-width: 8;
+    stroke: #d8d8d8;
+}
+
+/**************************************
+ *   Styling for user control slider
+ **************************************/
+
+/* Clear all styling for slider */
 input[type=range] {
     display: block;
     -webkit-appearance: none;
