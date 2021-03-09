@@ -16,11 +16,11 @@ export function idle(Tc, Tt) {
     var Th = Tt + dT + dTcool;   // Upper bound
     var Tl = Tt - dT - dTheat;   // Lower bound
     if (Tc > Th) {
-        return "TEMP_TOO_HOT";
+        return "TEMP_TOO_HIGH";
     }
 
     if (Tc < Tl) {
-        return "TEMP_TOO_COLD";
+        return "TEMP_TOO_LOW";
     }
 
     if (Tc >= Tl && Tc <= Th) {   // In the middle of upper and lower bound
@@ -36,7 +36,7 @@ export function cooling(Tc, Tt) {
     var TStop = Tt + (dT - dTcool);
 
     if (Tc < TStop) {   // Little too cold
-        return "STOP";
+        return "TEMP_OK";
     } else {
         return "MAINTAIN";
     }
@@ -50,7 +50,7 @@ export function heating(Tc, Tt) {
     var TStop = Tt - dT - dTheat;
 
     if (Tc > TStop) {   // Little too hot
-        return "STOP";
+        return "TEMP_OK";
     } else {
         return "MAINTAIN";
     }

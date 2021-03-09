@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useMachine } from '@xstate/react';
 
 import './style.css';
 import { ThermostatStates } from './ThermostatStates.js';
 import { idle, cooling, heating } from './ThermostatController.js';
+import Border from './Border.jsx';
 import Face from './Face.jsx';
 import Slider from './Slider.jsx';
-import { useMachine } from '@xstate/react';
 import CurrentTempController from './CurrentTempController';
 
 const Thermostat = () => {
@@ -65,17 +66,18 @@ const Thermostat = () => {
 		 * State change according to status
 		 */
 		switch(msg) {
-			case 'TEMP_TOO_HOT':
+			case 'TEMP_TOO_HIGH':
 				console.log('OUTSIDE TOO HOT');
-				send(msg);
+				send('TEMP_TOO_HOT');
+				console.log(send(msg));
 				break;
-			case 'TEMP_TOO_COLD':
+			case 'TEMP_TOO_LOW':
 				console.log('OUTSIDE TOO COLD');
 				send(msg);
 				break;
-			case 'STOP':
+			case 'TEMP_OK':
 				console.log('OUTSIDE IS NICE!!');
-				send('IDLE');
+				send(msg);
 				break;
 			case 'MAINTAIN':
 			default:
@@ -83,7 +85,9 @@ const Thermostat = () => {
 	}
 
     return (
-        <div class="container">
+        <div className="container">
+			<Border/>
+
 			<Face 
 				Tt={Tt} 
 				Tc={Tc}

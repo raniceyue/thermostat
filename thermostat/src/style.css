@@ -10,9 +10,18 @@
     transform: translate(-50%, -50%);
 }
   
-.thermostat {
+.thermostat-border {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.thermostat-face {
     position: relative;
     text-align: center;
+    z-index: 10;
 }
 
 /* Slider div overlays on top of thermostat div*/
@@ -82,9 +91,53 @@ svg text::selection {
     stroke: #52525A;
 }
 
-.svg-thermo-face {
+#svg-thermo-face {
     fill: #656B73; /* Default face colour*/
+    animation: sampleanimation 1s linear infinite;
 }
+
+#svg-thermo-face:hover{
+    fill: #EF6B6B;
+    -webkit-transition: fill 1s ease;
+	-moz-transition: fill 1s ease;
+	-o-transition: fill 1s ease;
+	transition: fill 1s ease;
+}
+
+.svg-thermo-face-idle {
+    fill: #656B73; /* Default face colour*/
+    -webkit-transition: fill 1s ease;
+	-moz-transition: fill 1s ease;
+	-o-transition: fill 1s ease;
+	transition: fill 1s ease;
+}
+
+.svg-thermo-face-cooling {
+    fill: #5495CA;
+}
+
+.svg-thermo-face-heating {
+    fill: #EF6B6B;
+    -webkit-transition: fill 1s ease;
+	-moz-transition: fill 1s ease;
+	-o-transition: fill 1s ease;
+	transition: fill 1s ease;
+}
+
+.animation-cooling {
+    animation: sampleanimation 1s forwards;
+}
+
+@keyframes sampleanimation {
+    from {
+      left: 0px;
+      top: 0px;
+    }
+    to {
+      left: 0px;
+      top: 150px;
+    }
+  }
 
 .svg-sun-icon {
     fill: #000;

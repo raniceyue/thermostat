@@ -5,16 +5,6 @@ import { drawArc } from './utils.js';
 const Slider = ({Tt, handleTtChange}) => {
 
     /**
-     * When user's left mouse button is no longer down on slider, stop detecting for movement
-     * - Mouse movement
-     * - Event where mouse button up
-     */
-    const onMouseUp = (e) => {
-        console.log("MOUSE UP: Removing event listeners for slider");
-        document.removeEventListener("mousemove", onMouseMove);
-    }
-
-    /**
      * When user's left mouse button down on the slider, start detecting for
      * - Mouse movement
      * - Event where mouse button up
@@ -23,6 +13,16 @@ const Slider = ({Tt, handleTtChange}) => {
         console.log("MOUSE DOWN: Adding event listeners for slider");
         document.addEventListener("mousemove", onMouseMove);
         document.addEventListener('mouseup', onMouseUp);
+    }
+    
+    /**
+     * When user's left mouse button is no longer down on slider, stop detecting for movement
+     * - Mouse movement
+     * - Event where mouse button up
+     */
+    const onMouseUp = (e) => {
+        console.log("MOUSE UP: Removing event listeners for slider");
+        document.removeEventListener("mousemove", onMouseMove);
     }
 
     /**
