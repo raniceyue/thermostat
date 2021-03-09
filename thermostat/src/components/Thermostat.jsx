@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useMachine } from '@xstate/react';
 
 import './style.css';
-import { ThermostatStates } from './ThermostatStates.js';
-import { idle, cooling, heating } from './ThermostatController.js';
+import { ThermostatStates } from '../util/ThermostatStates.js';
+import { idle, cooling, heating } from '../util/ThermostatController.js';
 import Border from './Border.jsx';
 import Face from './Face.jsx';
 import Slider from './Slider.jsx';

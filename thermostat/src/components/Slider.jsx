@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './style.css';
-import { drawArc } from './utils.js';
+import { drawArc } from '../util/utils.js';
 
 const Slider = ({Tt, handleTtChange}) => {
 

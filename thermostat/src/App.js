@@ -1,5 +1,5 @@
 import './index.css';
-import Thermostat from './Thermostat';
+import Thermostat from './components/Thermostat';
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { drawArc } from './utils.js';
+import { drawArc } from '../util/utils.js';
 
 const Border = () => {
     const arc1 = drawArc(50, 50, 43, -130, 130);
