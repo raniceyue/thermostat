@@ -73,56 +73,43 @@ For `scrollDown`, target temperature is decremented by 1.
 
 ## File Structure
 
-All files used to create this component are in `thermostat > src`.
+All files used to create this component are in `thermostat/src/`.
 
-**File Structure within `src`**
+**File Structure within `src/`**
 
 ```
     src/
     |-- components/
     |-- util/
-    |-- App.js
-    |-- index.css
-    |-- index.js
+    |-- App.js      
+    |-- index.css   
+    `-- index.js
 ```
 
-### `components`
+### `components/`
 
 This folder contains all `.jsx` files for the implementation of components used for this widget, as well as one general `style.css` file for syling for all the components.
 
 Within this folder, there are 6 main components
 
-#### 1. `Thermostat.jsx`
+| Filename | Description |
+|--|----|
+|`Thermostat.jsx`   | This file consists of all sub-components that make up the entire thermostat widget. It is responsible for managing the propagation to and communication of the **current temperature**, **target temperature** and **mode** to all sub-components.  |
+|`Border.jsx`       | This sub-component represents the outer rings (border) of the thermostat, and consists of mostly SVG elements that make up the border of the thermostat.|
+|`Face.jsx`         | This sub-component represents the face of the thermostat, and manages changes to the colour of the face depending on the mode of the thermostat (heating, cooling, idle).|
+|`TemperatureText.jsx`| This sub-component represents the text on the face of the thermostat, and is implemented using SVG.|
+|`Slider.jsx`       | This sub-component manages the slider and scrolling interactivity of the thermostat component. |
+|`CurrentTempController.jsx`| This sub-component represents the manual controls for setting the current temperature. |
 
-This file consists of all sub-components that make up the entire thermostat widget. It is responsible for managing the propagation to and communication of the **current temperature**, **target temperature** and **mode** to all sub-components. 
+### `util/`
 
-#### 2. `Border.jsx`
+This folder contains `.js` files that help with the business logic/ contain general helper functions.
 
-This sub-component represents the outer rings (border) of the thermostat, and consists of mostly SVG elements that make up the border of the thermostat.
-
-// Insert image here
-
-#### 3. `Face.jsx`
-
-This sub-component represents the face of the thermostat, and manages changes to the colour of the face depending on the mode of the thermostat (heating, cooling, idle). 
-
-#### 4. `TemperatureText.jsx`
-
-This sub-component represents the text on the face of the thermostat, and is implemented using SVG. 
-
-#### 5. `Slider.jsx`
-
-This sub-component manages the slider and scrolling interactivity of the thermostat component. 
-
-#### 6. `CurrentTempController.jsx`
-
-This sub-component represents the manual controls for setting the current temperature. 
-
-####
-
-### `util`
-
-This folder contains 
+| Filename | Description |
+|--|---|
+|`utils.js`| Contains additional functions |
+|`ThermostatController.js`| Contains the business logic of the thermostat.|
+|`ThermostatStates.js`| Contains the xstate state machine for managing state changes for the thermostat.|
 
 ## References
 
