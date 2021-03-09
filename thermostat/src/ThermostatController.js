@@ -16,11 +16,11 @@ export function idle(Tc, Tt) {
     var Th = Tt + dT + dTcool;   // Upper bound
     var Tl = Tt - dT - dTheat;   // Lower bound
     if (Tc > Th) {
-        return "TEMP_TOO_HIGH";
+        return "TEMP_TOO_HOT";
     }
 
     if (Tc < Tl) {
-        return "TEMP_TOO_LOW";
+        return "TEMP_TOO_COLD";
     }
 
     if (Tc >= Tl && Tc <= Th) {   // In the middle of upper and lower bound

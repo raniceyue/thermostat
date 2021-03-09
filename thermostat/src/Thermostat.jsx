@@ -66,12 +66,11 @@ const Thermostat = () => {
 		 * State change according to status
 		 */
 		switch(msg) {
-			case 'TEMP_TOO_HIGH':
+			case 'TEMP_TOO_HOT':
 				console.log('OUTSIDE TOO HOT');
-				send('TEMP_TOO_HOT');
-				console.log(send(msg));
+				send(msg);
 				break;
-			case 'TEMP_TOO_LOW':
+			case 'TEMP_TOO_COLD':
 				console.log('OUTSIDE TOO COLD');
 				send(msg);
 				break;

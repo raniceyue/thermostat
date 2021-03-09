@@ -6,8 +6,8 @@ export const ThermostatStates = Machine({
     states: {
       IDLE: {
         on: {
-          TEMP_TOO_HIGH: 'COOLING',
-          TEMP_TOO_LOW: 'HEATING'
+          TEMP_TOO_HOT: 'COOLING',
+          TEMP_TOO_COLD: 'HEATING'
         }
       },
       COOLING: {
