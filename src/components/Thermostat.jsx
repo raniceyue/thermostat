@@ -64,7 +64,9 @@ const Thermostat = () => {
 
 		/**
 		 * State change according to status
-		 * Since the naming of events in my state machine
+		 * Since the status received from the business logic corresponds to the
+		 * events in my state machine, if != MAINTAIN, send the message to the
+		 * service.
 		 */
 		if (msg !== 'MAINTAIN') {
 			console.log("MSG FROM B_LOGIC: " + msg);

@@ -16,7 +16,7 @@ const Slider = ({Tt, handleTtChange}) => {
     }
     
     /**
-     * When user's left mouse button is no longer down on slider, stop detecting for movement
+     * When user's left mouse button is no longer down on slider, stop detecting for
      * - Mouse movement
      * - Event where mouse button up
      */
@@ -32,10 +32,9 @@ const Slider = ({Tt, handleTtChange}) => {
     const onScroll = (e) => {
         let slider = document.getElementsByClassName("slider")[0];
 
-        console.log("Creating custom events");
-        
         let scrollUp = new CustomEvent("scrollUp");
         let scrollDown = new CustomEvent("scrollDown");
+        
         if (e.deltaY < 0) {
             slider.dispatchEvent(scrollUp);
         } else {
@@ -50,7 +49,7 @@ const Slider = ({Tt, handleTtChange}) => {
      * 
      * References
      * https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
-     * https://en.wikipedia.org/wiki/Atan2
+     * https://math.stackexchange.com/questions/1596513/find-the-bearing-angle-between-two-points-in-a-2d-space
      */
     const onMouseMove = (e) => {
         console.log("Mouse is moving");
@@ -67,16 +66,20 @@ const Slider = ({Tt, handleTtChange}) => {
         handleTtChange(value);
     }
 
-    // Same as componentDidUpdate and componentDidMount
-    // https://reactjs.org/docs/hooks-effect.html
+    /**
+     * Same as componentDidUpdate and componentDidMount
+     * Event listeners for custom events added when component mounts
+     * When component unmounts, event listeners are removed
+     * 
+     * Reference
+     * https://reactjs.org/docs/hooks-effect.html
+     */
     useEffect(() => {
         const onScrollUp = (e) => {
-            console.log("SCROLL UP");
             handleTtChange(Tt + 1);
         }
     
         const onScrollDown = (e) => {
-            console.log("SCROLL DOWN");
             handleTtChange(Tt - 1);
         }
 
@@ -84,7 +87,6 @@ const Slider = ({Tt, handleTtChange}) => {
         slider.addEventListener("scrollUp", onScrollUp);
         slider.addEventListener("scrollDown", onScrollDown);
         
-        // Same as componentDidUnmount()
         return function removeEventListeners() {
             slider.removeEventListener("scrollUp", onScrollUp);
             slider.removeEventListener("scrollDown", onScrollDown);
@@ -96,10 +98,12 @@ const Slider = ({Tt, handleTtChange}) => {
         <div className="slider"
             onMouseDown={e => onMouseDown(e)}
             onWheel={e => onScroll(e)}>
+            
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 {/* <ellipse transform="rotate(0 0 10)" className="slider-mark" cx="50%" cy="14%" rx=".5" ry="4"/> */}
                 <path className="slider-marks" d={drawArc(50, 50, 37, -150, 150)}/>
             </svg>
+        
         </div>
     );
 }

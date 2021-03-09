@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Component for text on thermostat face 
+ */
 const TemperatureText = ({Tt, Tc}) => {
     return(
         <>

@@ -4,20 +4,22 @@ import './style.css';
 import TemperatureText from './TemperatureText.jsx';
 
 /**
- * Component for thermostat face
+ * Component for thermostat face, contains
+ * - ThermostatText
+ * - The sun icon as an SVG path
  */
-
 const Face = ({Tt, Tc, mode}) => {
 	    
     const [heating, setHeating] = useState(0);
     const [cooling, setCooling] = useState(0);
 
     /**
-     * Hook to handle transition between states
+     * Hook to handle transition between states i.e. heating, cooling
+     * Opacity of faces are changed depending on the difference in Tt and Tc
+     * I tried to animate the SVG for the transition but it just didn't work
      */
     useEffect(() => {
-        // Difference in temp, either 4.5 or 5
-        let d = Tt - Tc;
+        let d = Tt - Tc;  // Difference in temp, either 4.5 or 5
         let o = 0;
         
         while (d >= 0 && o < 1) {

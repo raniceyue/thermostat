@@ -2,9 +2,8 @@ import React from 'react';
 import './style.css';
 
 /**
- * Component for Tc controller, controls outside temperature
+ * Component for testing controls, controls current temperature
  */
-
 const CurrentTempController = ({minTc, maxTc, Tc, handleTcChange}) => {
     return(
         <div className="control-container">
