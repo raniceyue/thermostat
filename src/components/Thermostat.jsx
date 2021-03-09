@@ -64,7 +64,13 @@ const Thermostat = () => {
 
 		/**
 		 * State change according to status
+		 * Since the naming of events in my state machine
 		 */
+		if (msg !== 'MAINTAIN') {
+			console.log("MSG FROM B_LOGIC: " + msg);
+			send(msg);
+		} 
+
 		switch(msg) {
 			case 'TEMP_TOO_HOT':
 				console.log('OUTSIDE TOO HOT');

@@ -23,6 +23,7 @@ const Slider = ({Tt, handleTtChange}) => {
     const onMouseUp = (e) => {
         console.log("MOUSE UP: Removing event listeners for slider");
         document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
     }
 
     /**
@@ -30,7 +31,9 @@ const Slider = ({Tt, handleTtChange}) => {
      */
     const onScroll = (e) => {
         let slider = document.getElementsByClassName("slider")[0];
-        // console.log(slider);
+
+        console.log("Creating custom events");
+        
         let scrollUp = new CustomEvent("scrollUp");
         let scrollDown = new CustomEvent("scrollDown");
         if (e.deltaY < 0) {
@@ -41,10 +44,27 @@ const Slider = ({Tt, handleTtChange}) => {
     }
 
     /**
-     * Handle slider
+     * Handle mouse down + mouse move events
+     * 
+     * Uses trigonometry to calculate the bearing of the cursor WRT thermostat
+     * 
+     * References
+     * https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+     * https://en.wikipedia.org/wiki/Atan2
      */
     const onMouseMove = (e) => {
         console.log("Mouse is moving");
+        var cx = document.querySelector('.origin').getBoundingClientRect().left // Distance from left of origin to left of viewport
+        var cy = document.querySelector('.origin').getBoundingClientRect().top; // Distance from top of origin to top of viewport
+
+        var mx = e.pageX;   // x-coordinate of mouse
+        var my = e.pageY;   // y-coordinate of mouse
+
+        var angle = Math.atan2(mx - cx, -(my - cy)) * (180 / Math.PI); // Bearing of cursor
+        var value = Math.round(65 + Math.round(angle / 10));
+        console.log("ANGLE: " + Math.round(angle) + "\n VALUE: " + value);
+
+        handleTtChange(value);
     }
 
     // Same as componentDidUpdate and componentDidMount
@@ -63,11 +83,13 @@ const Slider = ({Tt, handleTtChange}) => {
         let slider = document.getElementsByClassName("slider")[0];
         slider.addEventListener("scrollUp", onScrollUp);
         slider.addEventListener("scrollDown", onScrollDown);
+        
         // Same as componentDidUnmount()
         return function removeEventListeners() {
             slider.removeEventListener("scrollUp", onScrollUp);
             slider.removeEventListener("scrollDown", onScrollDown);
         };
+
     }, [handleTtChange, Tt]);
 
     return(

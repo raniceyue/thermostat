@@ -9,7 +9,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-  
+
 .thermostat-border {
     position: absolute;
     text-align: center;
@@ -18,19 +18,27 @@
     left: 0;
 }
 
+.origin {
+    position: absolute;
+    margin: auto;
+    top: 45%;
+    left: 50%;
+    width: 1px;
+    height: 1px;
+}
+
 .thermostat-face {
     position: relative;
-    text-align: center;
-    z-index: 10;
+    z-index: 1;
 }
 
 .slider {
     position: absolute;
-    text-align: center;
-    width: 100%;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 5;
+    border-radius: 50%;
+    cursor: grab;
 }
 
 /**************************
@@ -80,11 +88,11 @@ svg text::selection {
 }
 
 .svg-arc-cooling {
-    stop-color: #5495CA; /*For face #319CEF*/
+    stop-color: #5495CA; 
 }
 
 .svg-arc-heating {
-    stop-color: #EF6B6B; /* For face #FF6B63*/
+    stop-color: #EF6B6B; 
 }
 
 .svg-arc-bottom {
@@ -155,11 +163,11 @@ svg text::selection {
  *   Styling for Slider
  **************************/
 
-/* Styling for slider marks SVG */
+/* Styling for slider marks SVG, there are exactly 60 marks */
 .slider-marks {
     fill: none; 
-    stroke-dasharray: .7 3; 
-    stroke-dashoffset: 0;
+    stroke-dasharray: .7 2.55;
+    stroke-dashoffset: -0.5;
     stroke-width: 8;
     stroke: #d8d8d8;
 }
