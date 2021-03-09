@@ -40,14 +40,36 @@ The differences between the x and y coordinates of the origin and the coordinate
 
 #### Bearing to Value
 
-For the slider, the maximum drag both clockwise and anticlockwise is in the range [-130, 130], as it follows the markings on the thermostat. 
+For the slider, the maximum drag both clockwise and anticlockwise is in the range [-150, 150], as it follows the markings on the thermostat.
+
+![Slider degrees to value](./documentation/slider-deg-to-val.png)
+
+At 0 degrees, the value of the target temperature is 65. 
+At 150 degrees, the value of the target temperature is 80.
+
+As such, for every 10 degrees, there will be a change in the target temperature by 1.
+
+As the bearing is with respect to the positive y-axis, the value incremented must be with respect to the value at 0 degrees i.e. 65, therefore the mapping from bearing to value is 
+
+```js
+var value = 65 - Math.round(angle / 10);
+```
 
 ### Scroll interaction
 For the scrolling interaction, I create 2 custom events:
-1. **scrollUp**: Case where the mouse wheel scrolls upwards
-2. **scrollDown**: Case where the mouse wheel scrolls downwards
+1. `scrollUp`: Case where the mouse wheel scrolls upwards
+2. `scrollDown`: Case where the mouse wheel scrolls downwards
 
+When the component renders, event listeners are added to the component to detect the custom events. 
 
+When the `wheel` event is detected by the component, the 2 custom events are created and dispatched depending on the `deltaY` attribute of the `wheel` event. 
+
+For `scrollUp`, target temperature is incremented by 1.
+For `scrollDown`, target temperature is decremented by 1.
+
+> **References**
+> 
+> https://developer.mozilla.org/en-US/docs/Web/API/Document/wheel_event
 
 ## File Structure
 
