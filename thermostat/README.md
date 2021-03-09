@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+# CS3249 Assignment 3 by Ranice
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Preview
 
-## Available Scripts
+// Insert gif of radial slider control here
 
-In the project directory, you can run:
+// Insert gif of scroll function here
 
-### `yarn start`
+## File Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+All files used to create this component are in `thermostat > src`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**File Structure within `src`**
 
-### `yarn test`
+```
+    src
+    |-- components
+    |-- util
+    |-- App.js
+    |-- index.css
+    |-- index.js
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `components`
 
-### `yarn build`
+This folder contains all `.jsx` files for the implementation of components used for this widget, as well as one general `style.css` file for syling for all the components.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Within this folder, there are 6 main components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 1. `Thermostat.jsx`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This file consists of all sub-components that make up the entire thermostat widget. It is responsible for managing the propagation to and communication of the **current temperature**, **target temperature** and **mode** to all sub-components. 
 
-### `yarn eject`
+#### 2. `Border.jsx`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This sub-component represents the outer rings (border) of the thermostat, and consists of mostly SVG elements that make up the border of the thermostat.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+// Insert image here
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### 3. `Face.jsx`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This sub-component represents the face of the thermostat, and manages changes to the colour of the face depending on the mode of the thermostat (heating, cooling, idle). 
 
-## Learn More
+#### 4. `TemperatureText.jsx`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This sub-component represents the text on the face of the thermostat, and is implemented using SVG. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### 5. `Slider.jsx`
 
-### Code Splitting
+This sub-component manages the slider and scrolling interactivity of the thermostat component. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### 6. `CurrentTempController.jsx`
 
-### Analyzing the Bundle Size
+This sub-component represents the manual controls for setting the current temperature. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+####
 
-### Making a Progressive Web App
+### `util`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This folder contains 
 
-### Advanced Configuration
+## References
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Constructing arcs in SVG
+    -  https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths
+- File structure for React applications best practices
+    -  https://reactjs.org/docs/faq-structure.html
