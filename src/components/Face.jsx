@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './style.css';
+import './Face.css';
 
 import TemperatureText from './TemperatureText.jsx';
 
@@ -35,7 +35,7 @@ const Face = ({Tt, Tc, mode}) => {
 		<div className="thermostat-face">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle id='svg-thermo-face' className={ faceClass } 
-                        cx="50%" cy="50%" r="42"/>
+                        cx="50%" cy="50%" r="42.1"/>
                 
                 <TemperatureText Tt={Tt} Tc={Tc} />
 

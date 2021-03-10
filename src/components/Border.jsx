@@ -1,4 +1,5 @@
 import React from 'react';
+import './Border.css';
 import { drawArc } from '../util/utils.js';
 
 /**
@@ -27,7 +28,6 @@ const Border = () => {
                 <path className="svg-arc svg-arc-bottom" d={arc2}/>
             </svg>
         </div>
-        <div className="origin"></div>
         </>
     );
 }

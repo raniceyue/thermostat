@@ -1,4 +1,5 @@
 import React from 'react';
+import './TemperatureText.css';
 
 /**
  * Component for text on thermostat face 

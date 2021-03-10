@@ -1,0 +1,25 @@
+
+.slider {
+    position: absolute;
+    top: 0;
+    border-radius: 50%;
+    cursor: grab;
+}
+
+/* Styling for slider marks SVG, there are exactly 60 marks */
+.slider-marks {
+    fill: none; 
+    stroke-dasharray: .7 2.55;
+    stroke-dashoffset: -0.5;
+    stroke-width: 8;
+    stroke: #d8d8d8;
+}
+
+.origin {
+    position: absolute;
+    margin: auto;
+    top: 45%;
+    left: 50%;
+    width: 1px;
+    height: 1px;
+}

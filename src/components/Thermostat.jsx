@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useMachine } from '@xstate/react';
 
-import './style.css';
+import './Thermostat.css';
 import { ThermostatStates } from '../util/ThermostatStates.js';
 import ThermostatController from '../util/ThermostatController.js';
 import Border from './Border.jsx';
@@ -75,27 +75,33 @@ const Thermostat = () => {
 	useEffect(() => { regulateTemp(); }, [Tt, Tc, regulateTemp]);
 
     return (
-        <div className="container">
-			<Border/>
+		<>
+			<div className="thermostat">
+				<div className="thermostat-container">
+					<Border/>
 
-			<Face 
-				Tt={Tt} 
-				Tc={Tc}
-				mode={current.value}
-			/>
+					<Face 
+						Tt={Tt} 
+						Tc={Tc}
+						mode={current.value}
+					/>
 
-			<Slider 
-				Tt={Tt} 
-				handleTtChange={handleTtChange}
-			/>
-
-			<CurrentTempController 
-				minTc={minTc}
-				maxTc={maxTc}
-				Tc={Tc}
-				handleTcChange={handleTcChange}
-			/>
-        </div>
+					<Slider 
+						Tt={Tt} 
+						handleTtChange={handleTtChange}
+					/>
+					
+				</div>
+				<div className="control-container">
+					<CurrentTempController 
+						minTc={minTc}
+						maxTc={maxTc}
+						Tc={Tc}
+						handleTcChange={handleTcChange}
+					/>
+				</div>
+			</div>
+		</>
     );
 }
 

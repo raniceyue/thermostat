@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import './style.css';
+import './Slider.css';
 import { drawArc } from '../util/utils.js';
 
 const Slider = ({Tt, handleTtChange}) => {
@@ -92,13 +92,16 @@ const Slider = ({Tt, handleTtChange}) => {
     }, [onScrollUp, onScrollDown]);
 
     return(
-        <div className="slider"
-            onMouseDown={e => onMouseDown(e)}
-            onWheel={e => onScroll(e)}>
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path className="slider-marks" d={drawArc(50, 50, 37, -150, 150)}/>
-            </svg>        
-        </div>
+        <>
+            <div className="slider"
+                onMouseDown={e => onMouseDown(e)}
+                onWheel={e => onScroll(e)}>
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path className="slider-marks" d={drawArc(50, 50, 37, -150, 150)}/>
+                </svg>        
+            </div>
+            <div className="origin"></div>
+        </>
     );
 }
 

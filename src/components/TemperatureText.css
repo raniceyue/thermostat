@@ -1,0 +1,30 @@
+
+/* Remove selection highlight on SVG text*/
+svg text {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+svg text::selection {
+    background: none;
+}
+
+.thermo-temp-text {
+    position: absolute;
+    font-weight: bold;
+    font-size: 25px;
+    fill: #fff;
+    text-anchor: middle;
+    filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .2));
+}
+
+.thermo-curr-temp-text {
+    position: absolute;
+    font-weight: 600;
+    font-size: 8px;
+    fill: #fff;
+    text-anchor: middle;
+    filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .2));
+}

@@ -1,4 +1,4 @@
-# CS3249 Assignment 3 by Ranice
+# Documentation
 
 ## Preview
 
