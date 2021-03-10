@@ -36,8 +36,8 @@ const Thermostat = () => {
 	/**
 	 * Component state
 	 */
-	const [Tt, setTt] = useState(72);	// Range: 50 - 80
-	const [Tc, setTc] = useState(72);	// Range: 32 - 100
+	const [Tt, setTt] = useState(parseInt(72));	// Range: 50 - 80
+	const [Tc, setTc] = useState(parseInt(72));	// Range: 32 - 100
 	const [current, send] = useMachine(ThermostatStates);
 
 	let controller = new ThermostatController(dT, dTcool, dTheat);	// Object with all the business logic
@@ -67,12 +67,15 @@ const Thermostat = () => {
 	const regulateTemp = useCallback(() => {
 		var msg = controller.getStatus(current.value, Tc, Tt);
 		if (msg !== 'MAINTAIN') send(msg); 
-	});
+		console.log(msg);
+	}, [Tc, Tt, controller, current.value, send]);
 
 	/**
 	 * Whenever Tt or Tc changes, call regulateTemp()
 	 */
-	useEffect(() => { regulateTemp(); }, [Tt, Tc, regulateTemp]);
+	useEffect(() => { 
+		regulateTemp();
+	}, [regulateTemp]);
 
     return (
 		<>
