@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/thermostat/static/css/main.e8edd68b.chunk.css",
+    "main.js": "/thermostat/static/js/main.53ed4f1b.chunk.js",
+    "main.js.map": "/thermostat/static/js/main.53ed4f1b.chunk.js.map",
+    "runtime-main.js": "/thermostat/static/js/runtime-main.9c02e36e.js",
+    "runtime-main.js.map": "/thermostat/static/js/runtime-main.9c02e36e.js.map",
+    "static/js/2.d8a50f6d.chunk.js": "/thermostat/static/js/2.d8a50f6d.chunk.js",
+    "static/js/2.d8a50f6d.chunk.js.map": "/thermostat/static/js/2.d8a50f6d.chunk.js.map",
+    "index.html": "/thermostat/index.html",
+    "static/css/main.e8edd68b.chunk.css.map": "/thermostat/static/css/main.e8edd68b.chunk.css.map",
+    "static/js/2.d8a50f6d.chunk.js.LICENSE.txt": "/thermostat/static/js/2.d8a50f6d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9c02e36e.js",
+    "static/js/2.d8a50f6d.chunk.js",
+    "static/css/main.e8edd68b.chunk.css",
+    "static/js/main.53ed4f1b.chunk.js"
+  ]
+}
