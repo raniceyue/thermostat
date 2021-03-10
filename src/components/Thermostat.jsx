@@ -1,95 +1,78 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useMachine } from '@xstate/react';
 
 import './style.css';
 import { ThermostatStates } from '../util/ThermostatStates.js';
-import { idle, cooling, heating } from '../util/ThermostatController.js';
+import ThermostatController from '../util/ThermostatController.js';
 import Border from './Border.jsx';
 import Face from './Face.jsx';
 import Slider from './Slider.jsx';
 import CurrentTempController from './CurrentTempController';
 
+/**
+ * Main thermostat component containing all sub-components that make up the thermostat
+ * The states Tt and Tc are the main sources of truth for the target and current temperature
+ * Any changes in the values of Tt and Tc created by other components call the 
+ * handleTtChange and handleTcChange functions which will modify the states
+ * 
+ * Based on the change in Tt/Tc, status of the thermostat is checked using the ThermostatController
+ * object (business logic of thermostat), and based on the status received, will send a message to
+ * the service (state machine) which will change the state of the thermostat accordingly
+ */
 const Thermostat = () => {
+	/**
+	 * Test variables
+	 */
 	const minTt = 50;
 	const maxTt = 80;
 
 	const minTc = 32;
 	const maxTc = 100;
 
+	const dT = 2;
+	const dTcool = 1.5;
+	const dTheat = 1;
+
+	/**
+	 * Component state
+	 */
 	const [Tt, setTt] = useState(72);	// Range: 50 - 80
 	const [Tc, setTc] = useState(72);	// Range: 32 - 100
 	const [current, send] = useMachine(ThermostatStates);
 
+	let controller = new ThermostatController(dT, dTcool, dTheat);	// Object with all the business logic
+
 	/**
-	 * Functions to handle temp changes from other components
-	 * After setting temp will check temp and set mode of thermostat
+	 * Callback functions passed to sub-components to handle temp changes 
+	 * Used in sub-component CurrentTempController (for changing Tc, current temperature)
+	 * Used in sub-component Slider (for changing Tt, target temperature)
 	 */
 	const handleTcChange = (value) => {
 		if (value >= minTc && value <= maxTc) {
 			setTc(value);
-			regulateTemp();
 		}
 	}
 
 	const handleTtChange = (value) => {
 		if (value >= minTt && value <= maxTt) {
 			setTt(value);
-			regulateTemp();
+			console.log('Tt received by slider: ' + value + '\nNew Tt value: ' + Tt);
 		}
 	}
 
 	/**
 	 * Function for regulating temperature
+	 * State change according to status received by the business logic object
 	 */
-	const regulateTemp = () => {
-		var msg;
+	const regulateTemp = useCallback(() => {
+		var msg = controller.getStatus(current.value, Tc, Tt);
+		if (msg !== 'MAINTAIN') send(msg); 
+	});
 
-		/**
-		 * Get status from ThermostatController
-		 */
-		switch(current.value) {
-			case 'COOLING':
-				msg = cooling(Tc, Tt);
-				break;
-			case 'HEATING':
-				msg = heating(Tc, Tt);
-				break;
-			case 'IDLE':
-				msg = idle(Tc, Tt);
-				break;
-			default:
-		}
-
-		console.log('MESSAGE: ' + msg);
-
-		/**
-		 * State change according to status
-		 * Since the status received from the business logic corresponds to the
-		 * events in my state machine, if != MAINTAIN, send the message to the
-		 * service.
-		 */
-		if (msg !== 'MAINTAIN') {
-			console.log("MSG FROM B_LOGIC: " + msg);
-			send(msg);
-		} 
-
-		switch(msg) {
-			case 'TEMP_TOO_HOT':
-				console.log('OUTSIDE TOO HOT');
-				send(msg);
-				break;
-			case 'TEMP_TOO_COLD':
-				console.log('OUTSIDE TOO COLD');
-				send(msg);
-				break;
-			case 'TEMP_OK':
-				console.log('OUTSIDE IS NICE!!');
-				send(msg);
-				break;
-			case 'MAINTAIN':
-			default:
-		}
-	}
+	/**
+	 * Whenever Tt or Tc changes, call regulateTemp()
+	 */
+	useEffect(() => { regulateTemp(); }, [Tt, Tc, regulateTemp]);
 
     return (
         <div className="container">
