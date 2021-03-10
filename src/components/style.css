@@ -105,14 +105,17 @@ svg text::selection {
 
 .svg-thermo-face-idle {
     fill: #656B73; /* Default face colour*/
+    transition: fill 0.3s ease;
 }
 
 .svg-thermo-face-cooling {
     fill: #5495CA;
+    transition: fill 1s ease;
 }
 
 .svg-thermo-face-heating {
     fill: #d45f5f;
+    transition: fill 1s ease;
 }
 
 .svg-sun-icon {

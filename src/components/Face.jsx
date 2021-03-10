@@ -10,48 +10,32 @@ import TemperatureText from './TemperatureText.jsx';
  */
 const Face = ({Tt, Tc, mode}) => {
 	    
-    const [heating, setHeating] = useState(0);
-    const [cooling, setCooling] = useState(0);
+    const [faceClass, setFaceClass] = useState('svg-thermo-face-idle');
 
     /**
-     * Hook to handle transition between states i.e. heating, cooling
-     * Opacity of faces are changed depending on the difference in Tt and Tc
-     * I tried to animate the SVG for the transition but it just didn't work
+     * When the mode changes, based on the mode, the class of the 
+     * circle element representing the face will change and this helps
+     * to facilitate the transition effect
      */
     useEffect(() => {
-        let d = Tt - Tc;  // Difference in temp, either 4.5 or 5
-        let o = 0;
-        
-        while (d >= 0 && o < 1) {
-            o += 0.2;
-            d -= 0.5;
-        }
-
-        let o_heat = o;
-        let o_cool = o;
-
         if (mode === 'COOLING') {
-            o_heat = o_heat * 0;
+            setFaceClass('svg-thermo-face-cooling');
         }  
         
         if (mode === 'HEATING') {
-            o_cool = o_cool * 0;
+            setFaceClass('svg-thermo-face-heating');
         } 
 
-        setCooling(o_cool);
-        setHeating(o_heat);
-
-        console.log("HEATING OPACITY: " + cooling);
-        console.log("COOLING OPACITY: " + heating);
-
-    }, [Tc, Tt, mode]);
+        if (mode === 'IDLE') {
+            setFaceClass('svg-thermo-face-idle');
+        }
+    }, [mode]);
 
     return(
 		<div className="thermostat-face">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle className='svg-thermo-face-idle' opacity='1' cx="50%" cy="50%" r="42"/>
-                <circle className='svg-thermo-face-heating' opacity={ heating } cx="50%" cy="50%" r="42"/>
-                <circle className='svg-thermo-face-cooling' opacity={ cooling } cx="50%" cy="50%" r="42"/>
+                <circle id='svg-thermo-face' className={ faceClass } 
+                        cx="50%" cy="50%" r="42"/>
                 
                 <TemperatureText Tt={Tt} Tc={Tc} />
 
