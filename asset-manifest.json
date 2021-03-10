@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/thermostat/static/css/main.8b596553.chunk.css",
-    "main.js": "/thermostat/static/js/main.203e2c18.chunk.js",
-    "main.js.map": "/thermostat/static/js/main.203e2c18.chunk.js.map",
+    "main.js": "/thermostat/static/js/main.aead8981.chunk.js",
+    "main.js.map": "/thermostat/static/js/main.aead8981.chunk.js.map",
     "runtime-main.js": "/thermostat/static/js/runtime-main.9c02e36e.js",
     "runtime-main.js.map": "/thermostat/static/js/runtime-main.9c02e36e.js.map",
     "static/js/2.d8a50f6d.chunk.js": "/thermostat/static/js/2.d8a50f6d.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.9c02e36e.js",
     "static/js/2.d8a50f6d.chunk.js",
     "static/css/main.8b596553.chunk.css",
-    "static/js/main.203e2c18.chunk.js"
+    "static/js/main.aead8981.chunk.js"
   ]
 }
