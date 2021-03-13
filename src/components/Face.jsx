@@ -12,6 +12,11 @@ const Face = ({Tt, Tc, mode}) => {
 	    
     const [faceClass, setFaceClass] = useState('svg-thermo-face-idle');
 
+    /**
+     * When the mode changes, based on the mode, the class of the 
+     * circle element representing the face will change and this helps
+     * to facilitate the transition effect
+     */
     const onModeChange = (mode) => {
         if (mode === 'COOLING') {
             setFaceClass('svg-thermo-face-cooling');
@@ -26,11 +31,6 @@ const Face = ({Tt, Tc, mode}) => {
         }
     }   
 
-    /**
-     * When the mode changes, based on the mode, the class of the 
-     * circle element representing the face will change and this helps
-     * to facilitate the transition effect
-     */
     useEffect(() => {
         onModeChange(mode);
     }, [onModeChange, mode]);
