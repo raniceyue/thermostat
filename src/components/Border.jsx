@@ -6,6 +6,10 @@ import { drawArc } from '../util/utils.js';
  * Component for thermostat border
  */
 const Border = () => {
+
+    /**
+     * d values for the arc SVGs
+     */
     const arc1 = drawArc(50, 50, 43, -130, 130);
     const arc2 = drawArc(50, 50, 43, 130, 230);
 

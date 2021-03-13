@@ -75,7 +75,7 @@ const Thermostat = () => {
 	 */
 	useEffect(() => { 
 		regulateTemp();
-	}, [regulateTemp]);
+	}, [Tt, Tc, regulateTemp]);
 
     return (
 		<>

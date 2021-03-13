@@ -64,6 +64,10 @@ const Slider = ({Tt, handleTtChange}) => {
         handleTtChange(value);
     };
 
+    /**
+     * Event handlers for custom scrollUp and scrollDown events
+     * Increments or deprements value of Tt accordingly
+     */
     const onScrollUp = useCallback((e) => {
         handleTtChange(Tt + 1);
     }, [Tt, handleTtChange]);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Face.css';
 
 import TemperatureText from './TemperatureText.jsx';
@@ -9,7 +9,11 @@ import TemperatureText from './TemperatureText.jsx';
  * - The sun icon as an SVG path
  */
 const Face = ({Tt, Tc, mode}) => {
-	    
+	
+    /**
+     * Class of the circle SVG representing the face of thermostat is set as the state of the Face component
+     * Data bound to the className attribute of the circle SVG
+     */
     const [faceClass, setFaceClass] = useState('svg-thermo-face-idle');
 
     /**
@@ -17,7 +21,7 @@ const Face = ({Tt, Tc, mode}) => {
      * circle element representing the face will change and this helps
      * to facilitate the transition effect
      */
-    const onModeChange = (mode) => {
+    const onModeChange = useCallback((mode) => {
         if (mode === 'COOLING') {
             setFaceClass('svg-thermo-face-cooling');
         }  
@@ -29,8 +33,11 @@ const Face = ({Tt, Tc, mode}) => {
         if (mode === 'IDLE') {
             setFaceClass('svg-thermo-face-idle');
         }
-    }   
+    }, []);
 
+    /**
+     * Whenever the mode changes, onModeChange is called to change thermostat face accordingly
+     */
     useEffect(() => {
         onModeChange(mode);
     }, [onModeChange, mode]);
@@ -38,12 +45,13 @@ const Face = ({Tt, Tc, mode}) => {
     return(
 		<div className="thermostat-face">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle id='svg-thermo-face' className={ faceClass } 
+                <circle id='svg-thermo-face' 
+                        className={ faceClass }
                         cx="50%" cy="50%" r="42.1"/>
                 
                 <TemperatureText Tt={Tt} Tc={Tc} />
 
-                {/* SUN ICON */}
+                {/* SUN ICON, taken from material icons https://material.io/icons/ */}
                 <path className="svg-sun-icon"
                     d="M12, 9c1.65, 0, 3, 1.35, 3, 3s-1.35, 3-3, 3s-3-1.35-3-3 S10.35, 9, 12, 9 
                         M12, 7c-2.76, 0-5, 2.24-5, 5s2.24, 5, 5, 5s5-2.24, 5-5 S14.76, 7, 12, 7L12, 7z 
